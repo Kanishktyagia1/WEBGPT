@@ -1,4 +1,4 @@
-alert("Workspace JS loaded");const editor = document.getElementById("codeEditor");
+
 const preview = document.getElementById("preview");
 
 const tabs = document.querySelectorAll(".editor-tab");
