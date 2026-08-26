@@ -1,4 +1,4 @@
-
+const editor = document.getElementById("codeEditor");
 const preview = document.getElementById("preview");
 
 const tabs = document.querySelectorAll(".editor-tab");
@@ -26,37 +26,27 @@ console.log("WebGPTA1 JavaScript is working!");
 
 let currentLanguage = "html";
 
-
 function updatePreview() {
-
     const html = code.html;
-
     const css = `<style>${code.css}</style>`;
-
     const js = `<script>${code.js}<\/script>`;
 
     preview.srcdoc = html + css + js;
 }
 
-
 function saveCurrentCode() {
     code[currentLanguage] = editor.value;
 }
 
-
 function loadCode(language) {
-
     currentLanguage = language;
-
     editor.value = code[language];
 
     tabs.forEach(tab => {
-
         tab.classList.toggle(
             "active",
             tab.dataset.language === language
         );
-
     });
 
     const placeholders = {
@@ -68,33 +58,25 @@ function loadCode(language) {
     editor.placeholder = placeholders[language];
 }
 
-
 tabs.forEach(tab => {
-
     tab.addEventListener("click", () => {
-
         saveCurrentCode();
-
         loadCode(tab.dataset.language);
-
         updatePreview();
-
     });
-
 });
-
 
 editor.addEventListener("input", () => {
-
     code[currentLanguage] = editor.value;
-
     updatePreview();
-
 });
-
 
 loadCode("html");
 updatePreview();
+
+
+// AI GENERATOR
+
 const generateBtn = document.getElementById("generateBtn");
 const aiPrompt = document.getElementById("aiPrompt");
 
@@ -114,9 +96,11 @@ generateBtn.addEventListener("click", async () => {
 
         const response = await fetch("/api/generate", {
             method: "POST",
+
             headers: {
                 "Content-Type": "application/json"
             },
+
             body: JSON.stringify({
                 prompt: prompt
             })
