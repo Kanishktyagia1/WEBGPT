@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WebGPTA1 Workspace</title>
+
+    <link rel="stylesheet" href="workspace.css">
+</head>
+
+<body>
+
+    <div class="workspace">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                WebGPT<span>A1</span>
+            </div>
+
+            <div class="sidebar-title">
+                Files
+            </div>
+
+            <button class="file active">
+                HTML
+            </button>
+
+            <button class="file">
+                CSS
+            </button>
+
+            <button class="file">
+                JavaScript
+            </button>
+
+        </aside>
+
+
+        <!-- Main -->
+        <main class="main">
+
+            <!-- Top bar -->
+            <header class="topbar">
+
+                <div>
+                    <h1>Workspace</h1>
+                    <p>Build and preview your website</p>
+                </div>
+
+                <button class="deploy-btn">
+                    Deploy
+                </button>
+
+            </header>
+          <!-- AI Generator -->
+
+<section class="ai-section">
+
+    <div class="section-header">
+        <div>
+            <h2>AI Website Generator</h2>
+            <p>Describe what you want to build</p>
+        </div>
+    </div>
+
+    <div class="ai-box">
+
+        <textarea
+            id="aiPrompt"
+            placeholder="Example: Create a modern portfolio website for a photographer...">
+        </textarea>
+
+        <div class="ai-footer">
+
+            <span>✨ WebGPTA1 AI</span>
+
+            <button id="generateBtn">
+                Generate
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+            <!-- Preview -->
+            <section class="preview-section">
+
+                <div class="section-header">
+                    <h2>Live Preview</h2>
+
+                    <span class="status">
+                        ● Live
+                    </span>
+                </div>
+
+                <div class="preview-window">
+
+                    <div class="browser-bar">
+
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+
+                        <div class="address-bar">
+                            webgpta1.local
+                        </div>
+
+                    </div>
+
+                    <iframe id="preview"></iframe>
+
+                </div>
+
+            </section>
+
+
+            <!-- Editor -->
+            <section class="editor-section">
+
+                <div class="section-header">
+                    <h2>Code Editor</h2>
+                </div>
+
+                <div class="editor">
+
+    <div class="editor-tabs">
+
+        <button class="editor-tab active" data-language="html">
+            HTML
+        </button>
+
+        <button class="editor-tab" data-language="css">
+            CSS
+        </button>
+
+        <button class="editor-tab" data-language="js">
+            JavaScript
+        </button>
+
+    </div>
+
+    <textarea
+        id="codeEditor"
+        spellcheck="false"
+        placeholder="Write your HTML here..."></textarea>
+
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="workspace.js"></script>
+
+</body>
+
+</html>

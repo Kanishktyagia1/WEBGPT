@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #080b14;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Background */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 20%, #6d28d9 0%, transparent 30%),
+        radial-gradient(circle at 85% 15%, #2563eb 0%, transparent 30%),
+        radial-gradient(circle at 50% 90%, #06b6d4 0%, transparent 25%);
+    filter: blur(80px);
+    opacity: .35;
+    z-index: -1;
+}
+
+/* Navbar */
+
+.navbar {
+    height: 76px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    background: rgba(8,11,20,.65);
+    backdrop-filter: blur(20px);
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+}
+
+.logo span {
+    color: #8b5cf6;
+}
+
+nav {
+    display: flex;
+    gap: 32px;
+}
+
+nav a {
+    color: #b9bfd0;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .25s;
+}
+
+nav a:hover {
+    color: white;
+}
+
+.login-btn {
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.06);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/* Hero */
+
+.hero {
+    min-height: calc(100vh - 76px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 70px 20px;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 850px;
+    text-align: center;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 1px solid rgba(139,92,246,.3);
+    background: rgba(139,92,246,.1);
+    color: #c4b5fd;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 72px);
+    line-height: 1.08;
+    letter-spacing: -2px;
+    font-weight: 800;
+}
+
+.hero h1 span {
+    display: block;
+    background: linear-gradient(90deg, #a78bfa, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: 25px auto 0;
+    color: #a8afc1;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+/* Prompt */
+
+.prompt-box {
+    margin-top: 42px;
+    padding: 20px;
+
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 22px;
+
+    background: rgba(255,255,255,.055);
+    backdrop-filter: blur(20px);
+
+    box-shadow: 0 25px 70px rgba(0,0,0,.3);
+}
+
+.prompt-box textarea {
+    width: 100%;
+    height: 120px;
+
+    resize: none;
+    outline: none;
+    border: none;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+    background: #101522;
+    color: white;
+
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.prompt-box textarea::placeholder {
+    color: #687187;
+}
+
+.prompt-footer {
+    margin-top: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.prompt-footer span {
+    color: #7
