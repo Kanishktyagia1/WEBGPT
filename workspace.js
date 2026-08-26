@@ -118,8 +118,15 @@ generateBtn.addEventListener("click", async () => {
             body: JSON.stringify({ prompt })
         });
 
-        const data = await response.json();
+        const text = await response.text();
 
+console.log("BACKEND RESPONSE:", text);
+
+if (!response.ok) {
+    throw new Error(text);
+}
+
+alert(text);
         if (!response.ok) {
             throw new Error(data.error || "Backend error");
         }
