@@ -95,3 +95,44 @@ editor.addEventListener("input", () => {
 
 loadCode("html");
 updatePreview();
+const generateBtn = document.getElementById("generateBtn");
+const aiPrompt = document.getElementById("aiPrompt");
+
+generateBtn.addEventListener("click", async () => {
+    const prompt = aiPrompt.value.trim();
+
+    if (!prompt) {
+        alert("Please enter a prompt");
+        return;
+    }
+
+    generateBtn.disabled = true;
+    generateBtn.textContent = "Generating...";
+
+    try {
+        const response = await fetch("/api/generate", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ prompt })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "Backend error");
+        }
+
+        console.log("AI response:", data);
+        alert("AI connected successfully! 🚀");
+
+    } catch (error) {
+        console.error(error);
+        alert("Error: " + error.message);
+
+    } finally {
+        generateBtn.disabled = false;
+        generateBtn.textContent = "Generate";
+    }
+});
