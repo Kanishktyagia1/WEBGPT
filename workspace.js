@@ -99,6 +99,7 @@ const generateBtn = document.getElementById("generateBtn");
 const aiPrompt = document.getElementById("aiPrompt");
 
 generateBtn.addEventListener("click", async () => {
+
     const prompt = aiPrompt.value.trim();
 
     if (!prompt) {
@@ -110,36 +111,36 @@ generateBtn.addEventListener("click", async () => {
     generateBtn.textContent = "Generating...";
 
     try {
+
         const response = await fetch("/api/generate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ prompt })
+            body: JSON.stringify({
+                prompt: prompt
+            })
         });
 
         const text = await response.text();
 
-console.log("BACKEND RESPONSE:", text);
+        console.log("BACKEND RESPONSE:", text);
 
-if (!response.ok) {
-    throw new Error(text);
-}
-
-alert(text);
         if (!response.ok) {
-            throw new Error(data.error || "Backend error");
+            throw new Error(text);
         }
 
-        console.log("AI response:", data);
-        alert("AI connected successfully! 🚀");
+        alert("Backend response received! 🚀");
 
     } catch (error) {
+
         console.error(error);
         alert("Error: " + error.message);
 
     } finally {
+
         generateBtn.disabled = false;
         generateBtn.textContent = "Generate";
+
     }
 });
