@@ -392,3 +392,21 @@ body {
 #generateBtn:hover {
     transform: translateY(-1px);
 }
+.preview-btn {
+    padding: 10px 16px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    color: white;
+
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.preview-btn:hover {
+    transform: translateY(-1px);
+}
