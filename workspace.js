@@ -1,6 +1,11 @@
 const editor = document.getElementById("codeEditor");
-const preview = document.getElementById("preview");
+function saveProject() {
+    localStorage.setItem("webgpta1_project", JSON.stringify(code));
+}
 
+function updatePreview() {
+    saveProject();
+}
 const tabs = document.querySelectorAll(".editor-tab");
 
 const code = {
