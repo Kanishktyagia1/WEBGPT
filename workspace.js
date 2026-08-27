@@ -114,7 +114,28 @@ generateBtn.addEventListener("click", async () => {
             throw new Error(text);
         }
 
-        alert("Backend response received! 🚀");
+        const aiText =
+    data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+if (!aiText) {
+    throw new Error("AI returned no content");
+}
+
+const cleanText = aiText
+    .replace(/```json/g, "")
+    .replace(/```/g, "")
+    .trim();
+
+const result = JSON.parse(cleanText);
+
+code.html = result.html || "";
+code.css = result.css || "";
+code.js = result.js || "";
+
+loadCode("html");
+updatePreview();
+
+alert("Website generated successfully! 🚀");
 
     } catch (error) {
 
