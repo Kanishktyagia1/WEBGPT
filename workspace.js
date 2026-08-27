@@ -1,11 +1,5 @@
 const editor = document.getElementById("codeEditor");
-function saveProject() {
-    localStorage.setItem("webgpta1_project", JSON.stringify(code));
-}
-
-function updatePreview() {
-    saveProject();
-}
+const preview = document.getElementById("preview");
 const tabs = document.querySelectorAll(".editor-tab");
 
 const code = {
@@ -31,12 +25,21 @@ console.log("WebGPTA1 JavaScript is working!");
 
 let currentLanguage = "html";
 
+function saveProject() {
+    localStorage.setItem(
+        "webgpta1_project",
+        JSON.stringify(code)
+    );
+}
+
 function updatePreview() {
     const html = code.html;
     const css = `<style>${code.css}</style>`;
     const js = `<script>${code.js}<\/script>`;
 
     preview.srcdoc = html + css + js;
+
+    saveProject();
 }
 
 function saveCurrentCode() {
@@ -86,6 +89,7 @@ const generateBtn = document.getElementById("generateBtn");
 const aiPrompt = document.getElementById("aiPrompt");
 
 generateBtn.addEventListener("click", async () => {
+
     const prompt = aiPrompt.value.trim();
 
     if (!prompt) {
@@ -97,18 +101,23 @@ generateBtn.addEventListener("click", async () => {
     generateBtn.textContent = "Generating...";
 
     try {
+
         const response = await fetch("/api/generate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ prompt: prompt })
+            body: JSON.stringify({
+                prompt: prompt
+            })
         });
 
         const data = await response.json();
 
         if (!response.ok) {
-            throw new Error(data.error || "Backend error");
+            throw new Error(
+                data.error || "Backend error"
+            );
         }
 
         const aiText =
@@ -135,17 +144,33 @@ generateBtn.addEventListener("click", async () => {
         alert("Website generated successfully! 🚀");
 
     } catch (error) {
+
         console.error(error);
         alert("Error: " + error.message);
 
     } finally {
+
         generateBtn.disabled = false;
         generateBtn.textContent = "Generate";
+
     }
 });
-const openPreviewBtn = document.getElementById("openPreviewBtn");
 
-openPreviewBtn.addEventListener("click", () => {
-    saveProject();
-    window.location.href = "preview.html";
-});
+
+// FULL PREVIEW PAGE
+
+const openPreviewBtn =
+    document.getElementById("openPreviewBtn");
+
+if (openPreviewBtn) {
+
+    openPreviewBtn.addEventListener("click", () => {
+
+        saveCurrentCode();
+        saveProject();
+
+        window.location.href = "preview.html";
+
+    });
+
+}
