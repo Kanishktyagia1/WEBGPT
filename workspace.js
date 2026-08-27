@@ -81,7 +81,6 @@ const generateBtn = document.getElementById("generateBtn");
 const aiPrompt = document.getElementById("aiPrompt");
 
 generateBtn.addEventListener("click", async () => {
-
     const prompt = aiPrompt.value.trim();
 
     if (!prompt) {
@@ -93,59 +92,49 @@ generateBtn.addEventListener("click", async () => {
     generateBtn.textContent = "Generating...";
 
     try {
-
         const response = await fetch("/api/generate", {
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json"
             },
-
-            body: JSON.stringify({
-                prompt: prompt
-            })
+            body: JSON.stringify({ prompt: prompt })
         });
 
-        const text = await response.text();
-
-        console.log("BACKEND RESPONSE:", text);
+        const data = await response.json();
 
         if (!response.ok) {
-            throw new Error(text);
+            throw new Error(data.error || "Backend error");
         }
 
         const aiText =
-    data.candidates?.[0]?.content?.parts?.[0]?.text;
+            data.candidates?.[0]?.content?.parts?.[0]?.text;
 
-if (!aiText) {
-    throw new Error("AI returned no content");
-}
+        if (!aiText) {
+            throw new Error("AI returned no content");
+        }
 
-const cleanText = aiText
-    .replace(/```json/g, "")
-    .replace(/```/g, "")
-    .trim();
+        const cleanText = aiText
+            .replace(/```json/g, "")
+            .replace(/```/g, "")
+            .trim();
 
-const result = JSON.parse(cleanText);
+        const result = JSON.parse(cleanText);
 
-code.html = result.html || "";
-code.css = result.css || "";
-code.js = result.js || "";
+        code.html = result.html || "";
+        code.css = result.css || "";
+        code.js = result.js || "";
 
-loadCode("html");
-updatePreview();
+        loadCode("html");
+        updatePreview();
 
-alert("Website generated successfully! 🚀");
+        alert("Website generated successfully! 🚀");
 
     } catch (error) {
-
         console.error(error);
         alert("Error: " + error.message);
 
     } finally {
-
         generateBtn.disabled = false;
         generateBtn.textContent = "Generate";
-
     }
 });
