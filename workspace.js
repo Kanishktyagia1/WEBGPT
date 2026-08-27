@@ -143,3 +143,9 @@ generateBtn.addEventListener("click", async () => {
         generateBtn.textContent = "Generate";
     }
 });
+const openPreviewBtn = document.getElementById("openPreviewBtn");
+
+openPreviewBtn.addEventListener("click", () => {
+    saveProject();
+    window.location.href = "preview.html";
+});
